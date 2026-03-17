@@ -15,7 +15,7 @@ A production-ready SaaS starter template built with Next.js 15, Supabase, Stripe
 - **Mobile Responsive** — Collapsible sidebar layout
 - **Row Level Security** — Complete RLS policies for all tables
 - **Type Safe** — Full TypeScript with strict mode
-- **Railway Ready** — `railway.toml` with health checks and deploy configuration
+- **Railway Ready** — `railway.json` with health checks and deploy configuration
 
 ## Tech Stack
 
