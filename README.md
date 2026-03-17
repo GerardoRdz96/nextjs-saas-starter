@@ -4,7 +4,7 @@ A production-ready SaaS starter built with Next.js 15, Supabase, and Stripe. Dep
 
 > Built with the same patterns used by [Penguin Alley](https://penguinalley.com) — the platform where anyone turns ideas into apps.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/nextjs-saas-starter)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/YzzrHL?referralCode=rLZU0U)
 
 ---
 

@@ -16,7 +16,7 @@ This guide walks you through deploying the **Next.js SaaS Starter** on Railway f
 
 Click the button below to deploy directly to Railway:
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/nextjs-saas-starter)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/YzzrHL?referralCode=rLZU0U)
 
 Railway will fork this repository to your account and walk you through setting up environment variables.
 
