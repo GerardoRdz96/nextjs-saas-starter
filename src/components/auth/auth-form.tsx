@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Github } from "lucide-react";
+import { Github, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getURL } from "@/lib/utils";
@@ -22,6 +22,37 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
+
+  if (!isSupabaseConfigured) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 bg-slate-50 dark:bg-slate-950">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <div className="mx-auto h-12 w-12 rounded-xl bg-amber-500 flex items-center justify-center mb-4">
+              <AlertTriangle className="h-6 w-6 text-white" />
+            </div>
+            <CardTitle className="text-2xl">Setup Required</CardTitle>
+            <CardDescription className="mt-2">
+              This app needs Supabase to be configured before authentication will work.
+            </CardDescription>
+          </CardHeader>
+          <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+            <p className="font-medium">To get started:</p>
+            <ol className="list-decimal list-inside space-y-2">
+              <li>Create a project at <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">supabase.com</a></li>
+              <li>Run the <code className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-xs">supabase/schema.sql</code> file in the SQL editor</li>
+              <li>Add your Supabase URL and anon key to the environment variables</li>
+              <li>Redeploy the application</li>
+            </ol>
+          </div>
+          <Link href="/" className="block mt-4">
+            <Button variant="secondary" className="w-full">Back to Home</Button>
+          </Link>
+        </Card>
+      </div>
+    );
+  }
+
   const supabase = createClient();
 
   async function handleSubmit(e: React.FormEvent) {
