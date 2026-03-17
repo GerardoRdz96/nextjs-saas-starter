@@ -1,7 +1,17 @@
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
+  // Allow health check to pass without Supabase (Railway healthcheck runs before env vars are set)
+  if (request.nextUrl.pathname === "/api/health") {
+    return NextResponse.next();
+  }
+
+  // If Supabase is not configured, let requests through without auth
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return NextResponse.next();
+  }
+
   return await updateSession(request);
 }
 
